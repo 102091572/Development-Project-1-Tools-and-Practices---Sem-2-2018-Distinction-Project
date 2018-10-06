@@ -13,7 +13,7 @@ public class BuildingMovement : MonoBehaviour {
     {
         ScriptActive = true;
     }
-
+    //While in placement mode the building follows the mouse snapping to the grid.
     private void LateUpdate()
     {
         if (ScriptActive)

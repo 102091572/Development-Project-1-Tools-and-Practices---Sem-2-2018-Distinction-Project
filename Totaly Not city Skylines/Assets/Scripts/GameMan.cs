@@ -30,7 +30,7 @@ public class GameMan : MonoBehaviour {
     public Text CostText;
     public Text GainText;
 
-
+    //sets defults
     // Use this for initialization
     void Start () {
         Money = StartingMoney;
@@ -43,13 +43,10 @@ public class GameMan : MonoBehaviour {
     //GameLoop
     IEnumerator DayCycle()
     {
+        //each day loop / game loops are 5 seconds
         yield return new WaitForSeconds(5);
         Day++;
-        GainPerDay = Pop * TaxPerDay;
-
-        
-        Money = Money + (GainPerDay - CostPerDay);
-
+      //validation to ensure correct values 
         if (Money > MoneyCap)
         {
             Money = MoneyCap;
@@ -59,11 +56,16 @@ public class GameMan : MonoBehaviour {
         {
             Pop = PopCap;
         }
-
+        //calcs how much money we are makeing/losing and changes the money value
+        GainPerDay = Pop * TaxPerDay;
+        Money = Money + (GainPerDay - CostPerDay);
+        
+        //Must be called last in loop as it starts the loop again
         StartCoroutine(DayCycle());
     }
 
 	// Update is called once per frame
+    //Updates the ui with the correct values
 	void Update () {
         DayText.text = "Day : " + Day.ToString();
         MoneyText.text = "$ " + Money.ToString() + " / " + MoneyCap.ToString();
@@ -74,7 +76,7 @@ public class GameMan : MonoBehaviour {
 
 
     }
-
+    //called when a building is placed 
     public void PurchaseBuilding(int BuildCost,int ContinuedCost)
     {
         Money = Money - BuildCost;
@@ -82,6 +84,7 @@ public class GameMan : MonoBehaviour {
     }
 
     public void AddPopulation(int PopIncrease)
+        //validation to ensure population is not over cap
     {
         if (Pop + PopIncrease > PopCap)
         {
@@ -92,15 +95,17 @@ public class GameMan : MonoBehaviour {
             Pop = Pop + PopIncrease;
         }
     }
+    //called when apartment building is created
     public void IncreasePopCap(int PopCapIncrease)
     {
         PopCap = PopCapIncrease;
     }
-
+    //called when building is destroyed 
     public void BuildingDestroyed(int CostReduction)
     {
         CostPerDay = CostPerDay - CostReduction;
     }
+    //exits the application 
     public void Exit()
     {
         Application.Quit();

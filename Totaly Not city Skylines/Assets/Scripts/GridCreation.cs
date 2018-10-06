@@ -16,7 +16,7 @@ public class GridCreation : MonoBehaviour {
 
         List<GameObject> selected = new List<GameObject>();
 
-
+        //loops through 2 for loops to create a 40 x 40 grid that buildings can be placed in
         i = 0;
         ii = 0;
         for (int X = 0; i < 41; i++)
@@ -25,7 +25,7 @@ public class GridCreation : MonoBehaviour {
             ii = 0;
             for (int Z = 0; ii < 41; ii++)
             {
-                AirGO = (GameObject)Instantiate(Air, new Vector3(X, 0, Z), Quaternion.identity);
+                //AirGO = (GameObject)Instantiate(Air, new Vector3(X, 0, Z), Quaternion.identity);
                 GridPoints.Add(AirGO);
                 Z++;
             }
