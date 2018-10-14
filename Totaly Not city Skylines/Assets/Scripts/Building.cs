@@ -13,7 +13,7 @@ public class Building : MonoBehaviour
         gameManager = GameObject.FindGameObjectWithTag("GameMan");
     }
     //Builds the builing stops it following mouse and subtracts the money and adds the daily cost 
-    public void Build()
+    public virtual void Build()
     {
         gameManager.GetComponent<GameMan>().PurchaseBuilding(BuildCost, ContinuedCost);
         this.GetComponent<BuildingMovement>().ScriptActive = false;
