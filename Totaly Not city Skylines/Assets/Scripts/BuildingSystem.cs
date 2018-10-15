@@ -10,6 +10,7 @@ public class BuildingSystem : MonoBehaviour {
     public GameObject BuildMenuOptions;
     public GameObject PausePanel;
     public GameObject ToBuildCostPannel;
+    public GameObject DeletePannel;
 
     public GameObject BankPreFab;
     public GameObject ApartmentPreFab;
@@ -28,6 +29,7 @@ public class BuildingSystem : MonoBehaviour {
 
     public Text Costtobuild;
     public Text costperdaytobuild;
+    public Text DeleteRefundtxt;
 
     public GameObject gameManager;
 
@@ -43,13 +45,14 @@ public class BuildingSystem : MonoBehaviour {
     private int _daycost;
     private int _costBuild;
     private int _dayCostBuild;
+    private int deleteRefund;
 
 
     //public bool ScriptActive;
     public Material deselctmat;
     public Material SelectMat;
     public GameObject gridpointsParent;
-    bool buildSelectModeBool;
+   
 
     private void Start()
     {
@@ -57,7 +60,9 @@ public class BuildingSystem : MonoBehaviour {
         SelectedGo = new List<GameObject>();
         gridpointsParent.SetActive(false);
         BuildType(5);
-       
+        deleteRefund = 0;
+
+
     }
 
     //Changing build states and showing / hiding ui elements.
@@ -68,7 +73,7 @@ public class BuildingSystem : MonoBehaviour {
 
     public void BuildType(int buildingType) {
         
-        buildSelectModeBool = true;
+        
         CurrentBuildType = buildingType;
         //ui show
         
@@ -126,6 +131,7 @@ public class BuildingSystem : MonoBehaviour {
                 }
                 SelectedGo.Clear();
                 gridpointsParent.SetActive(false);
+                DeletePannel.gameObject.SetActive(false);
                 break;
             case 6:
                 
@@ -134,6 +140,16 @@ public class BuildingSystem : MonoBehaviour {
                 gridpointsParent.SetActive(false);
                 ToBuildCostPannel.gameObject.SetActive(false);
                 SelectedGo.Clear();
+                DeletePannel.gameObject.SetActive(false);
+
+                break;
+            case 7:
+                SelectedGo.Clear();
+                BuildMenu.gameObject.SetActive(false);
+                BuildMenuOptions.gameObject.SetActive(false);
+                gridpointsParent.SetActive(false);
+                DeletePannel.gameObject.SetActive(true);
+                deleteRefund = 0;
 
                 break;
         }
@@ -146,6 +162,7 @@ public class BuildingSystem : MonoBehaviour {
 
         Costtobuild.text = "Cost to build all buildings : - " + _costBuild.ToString();
         costperdaytobuild.text = "Cost Per day if all buildings are built : + " + _dayCostBuild.ToString();
+        DeleteRefundtxt.text = "Cost per day - " + deleteRefund.ToString();
         //old update
         if (Input.GetKeyDown(KeyCode.A))
         {
@@ -168,7 +185,7 @@ public class BuildingSystem : MonoBehaviour {
         }
 
         //good update
-        if (CurrentBuildType!= 5)
+        if (CurrentBuildType != 5 && CurrentBuildType != 7)
         {
             if (Input.GetMouseButtonDown(0))
             {
@@ -207,8 +224,59 @@ public class BuildingSystem : MonoBehaviour {
             }
 
         }
-    }
+        if (CurrentBuildType == 7)
+        {
+            SelectedGo.Clear();
+            if (Input.GetMouseButtonDown(0))
+            {
+                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                RaycastHit hit;
+                if (Physics.Raycast(ray, out hit))
+                {
 
+                    hitG0 = hit.collider.gameObject;
+
+                }
+                if (hitG0.tag == "Building")
+                {
+                    SelectedGo.Add(hitG0);
+                    hitG0.tag = "selected";
+                    Debug.Log("Selected");
+                }
+                else if (hitG0.tag == "selected")
+                {
+                    SelectedGo.Remove(hitG0);
+                    hitG0.tag = "Building";
+                    deleteRefund = deleteRefund - hitG0.GetComponent<Building>().ContinuedCost;
+                    Debug.Log("deSelected");
+                    
+                }
+                _dayCostBuild = 0;
+                
+                foreach (GameObject Go in SelectedGo)
+                {
+                    _dayCostBuild = Go.GetComponent<Building>().ContinuedCost;
+                    deleteRefund = deleteRefund + _dayCostBuild;
+
+
+                }
+            }
+
+        }
+    }
+    public void Delete() {
+        
+        
+        GameObject[] tobedestoryed = GameObject.FindGameObjectsWithTag("selected");
+        foreach (GameObject DestoryOb in tobedestoryed)
+        {
+           
+            DestoryOb.GetComponent<Destroy>().DestroyReturnCost();
+
+        }
+        BuildType(6);
+        SelectedGo.Clear();
+    }
    //rework places buildings at all selected location if money is enough when build button pressed
     public void Build()
     {

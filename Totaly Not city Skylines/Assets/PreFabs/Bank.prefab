@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 33968859610884764}
   - component: {fileID: 23241927305698832}
   - component: {fileID: 114370563785643900}
+  - component: {fileID: 65591088939446082}
   m_Layer: 0
   m_Name: Bank
   m_TagString: Untagged
@@ -36,7 +37,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1387745592712960}
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -2.8034573, y: 1.0000004, z: 0.15644264}
+  m_LocalPosition: {x: 11.85928, y: 0.85000026, z: -2.1987972}
   m_LocalScale: {x: 0.9, y: 0.9, z: 0.9}
   m_Children: []
   m_Father: {fileID: 0}
@@ -83,6 +84,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1387745592712960}
   m_Mesh: {fileID: 4300000, guid: 50276b81489fae346a0bc60e06ffed55, type: 3}
+--- !u!65 &65591088939446082
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1387745592712960}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2, y: 2.0000005, z: 3.772544}
+  m_Center: {x: 0, y: 0, z: 0.38627157}
 --- !u!114 &114370563785643900
 MonoBehaviour:
   m_ObjectHideFlags: 1
