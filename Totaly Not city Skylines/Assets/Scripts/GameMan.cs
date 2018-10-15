@@ -7,11 +7,11 @@ public class GameMan : MonoBehaviour {
     private int MoneyCap = 20000;
     public int StartingMoney;
 
-    public int Money;
+    public int Money; // Current amount of money player has
+    public int Pop; // Current Population
 
-
-    public int Pop;
-    
+    private int Employed; // Total no. of employed people
+    private int JobCap; // total no. of available jobs
 
     private int Power;
     private int PowerCap;
@@ -21,7 +21,7 @@ public class GameMan : MonoBehaviour {
     private int TaxPerDay = 50;
     private int CostPerDay = 0;
     private int GainPerDay;
-
+ 
 
     public Text DayText;
     public Text MoneyText;
@@ -29,16 +29,18 @@ public class GameMan : MonoBehaviour {
     public Text PowerText;
     public Text CostText;
     public Text GainText;
+    public Text EmploymentText;
 
     //sets defults
     // Use this for initialization
     void Start () {
         Money = StartingMoney;
-        PopCap = 51;
-        Pop = 55;
-        StartCoroutine(DayCycle());
+        PopCap = 50;
+        Pop = 50;
         PowerCap = 5;
-	}
+        JobCap = 20;
+        StartCoroutine(DayCycle());
+    }
 
     //GameLoop
     IEnumerator DayCycle()
@@ -56,8 +58,20 @@ public class GameMan : MonoBehaviour {
         {
             Pop = PopCap;
         }
+
+        if (Employed > JobCap)
+        {
+            Employed = JobCap;
+        }
+
+        // If jobs & people are available the no. of employed grows by 5 daily
+        if ((Employed < JobCap) && (Employed < Pop))
+        {
+            Employed += 5;
+        }
+
         //calcs how much money we are makeing/losing and changes the money value
-        GainPerDay = Pop * TaxPerDay;
+        GainPerDay = Employed * TaxPerDay;
         Money = Money + (GainPerDay - CostPerDay);
         
         //Must be called last in loop as it starts the loop again
@@ -70,13 +84,13 @@ public class GameMan : MonoBehaviour {
         DayText.text = "Day : " + Day.ToString();
         MoneyText.text = "$ " + Money.ToString() + " / " + MoneyCap.ToString();
         PopText.text = "Population : " + Pop.ToString() + " / " + PopCap.ToString();
+        EmploymentText.text = "Employed: " + Employed.ToString() + " / " + JobCap.ToString();
         PowerText.text = "Power : " + Power.ToString() + " / " + PowerCap.ToString();
         CostText.text = "- " + CostPerDay.ToString() + " Per day";
         GainText.text = "+ " + GainPerDay.ToString() + " Per day";
-
-
     }
-    //called when a building is placed 
+
+    //alled when a building is placed 
     public void PurchaseBuilding(int BuildCost,int ContinuedCost)
     {
         Money = Money - BuildCost;
@@ -95,16 +109,26 @@ public class GameMan : MonoBehaviour {
             Pop = Pop + PopIncrease;
         }
     }
+
     //called when apartment building is created
     public void IncreasePopCap(int PopCapIncrease)
     {
         PopCap = PopCapIncrease;
     }
+
     //called when building is destroyed 
     public void BuildingDestroyed(int CostReduction)
     {
         CostPerDay = CostPerDay - CostReduction;
     }
+
+    /* Called when Workplace building is created */
+    // When a workplace is created the max no. of employees rises
+    public void IncreaseJobCap(int JobGrowth)
+    {
+        JobCap += JobGrowth;
+    }
+
     //exits the application 
     public void Exit()
     {
