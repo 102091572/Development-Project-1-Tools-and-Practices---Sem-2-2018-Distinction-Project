@@ -5,10 +5,6 @@ using UnityEngine;
 public class Destroy : MonoBehaviour {
     public GameObject gameManager;
 
-    private void Start()
-    {
-        gameManager = GameObject.FindGameObjectWithTag("GameMan");
-    }
     //Destroys a game obhect in the game word that has this scrip on it 
     public void DestroyAll()
     {
@@ -19,7 +15,6 @@ public class Destroy : MonoBehaviour {
     {
         gameManager.GetComponent<GameMan>().BuildingDestroyed(this.GetComponent<Building>().ContinuedCost);
         Destroy(this.gameObject);
-        Debug.Log("destroy call in destroy script");
     }
 
 }
