@@ -23,10 +23,11 @@ public class BuildingSystem : MonoBehaviour {
     public Text ErrorText;
     public GameObject ErrorTextParent;
 
-    private bool _BuildModeBool;
+   
     public bool PauseGameBool;
 
-   
+    public Text Costtobuild;
+    public Text costperdaytobuild;
 
     public GameObject gameManager;
 
@@ -81,6 +82,7 @@ public class BuildingSystem : MonoBehaviour {
                 _cost = BankPreFab.GetComponent<Building>().BuildCost;
                 _daycost = BankPreFab.GetComponent<Building>().ContinuedCost;
                 ToBuildCostPannel.gameObject.SetActive(true);
+                BuildMenuOptions.gameObject.SetActive(false);
                 break;
             case 2:
                 //appartmeent
@@ -89,6 +91,7 @@ public class BuildingSystem : MonoBehaviour {
                 _cost = ApartmentPreFab.GetComponent<Building>().BuildCost;
                 _daycost = ApartmentPreFab.GetComponent<Building>().ContinuedCost;
                 ToBuildCostPannel.gameObject.SetActive(true);
+                BuildMenuOptions.gameObject.SetActive(false);
                 break;
             case 3:
                 //workplace
@@ -97,6 +100,7 @@ public class BuildingSystem : MonoBehaviour {
                 _cost = WorkPlacePreFab.GetComponent<Building>().BuildCost;
                 _daycost = WorkPlacePreFab.GetComponent<Building>().ContinuedCost;
                 ToBuildCostPannel.gameObject.SetActive(true);
+                BuildMenuOptions.gameObject.SetActive(false);
                 break;
             case 4:
                 //power
@@ -105,6 +109,7 @@ public class BuildingSystem : MonoBehaviour {
                 _cost = PowerStationPreFab.GetComponent<Building>().BuildCost;
                 _daycost = PowerStationPreFab.GetComponent<Building>().ContinuedCost;
                 ToBuildCostPannel.gameObject.SetActive(true);
+                BuildMenuOptions.gameObject.SetActive(false);
                 break;
             case 5:
                 //no build object
@@ -127,6 +132,7 @@ public class BuildingSystem : MonoBehaviour {
                 BuildMenu.gameObject.SetActive(false);
                 BuildMenuOptions.gameObject.SetActive(true);
                 gridpointsParent.SetActive(false);
+                ToBuildCostPannel.gameObject.SetActive(false);
                 SelectedGo.Clear();
 
                 break;
@@ -137,6 +143,9 @@ public class BuildingSystem : MonoBehaviour {
     //While in placement mode the building follows the mouse snapping to the grid.
     private void Update()
     {
+
+        Costtobuild.text = "Cost to build all buildings : - " + _costBuild.ToString();
+        costperdaytobuild.text = "Cost Per day if all buildings are built : + " + _dayCostBuild.ToString();
         //old update
         if (Input.GetKeyDown(KeyCode.A))
         {
