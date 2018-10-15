@@ -22,7 +22,6 @@ GameObject:
   - component: {fileID: 33203742416714322}
   - component: {fileID: 23040196212019294}
   - component: {fileID: 114401973729571366}
-  - component: {fileID: 65567425196492328}
   m_Layer: 0
   m_Name: appartment (1)
   m_TagString: Untagged
@@ -37,7 +36,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1960356125197558}
   m_LocalRotation: {x: -0.5, y: 0.5, z: 0.5, w: 0.5}
-  m_LocalPosition: {x: 7.128211, y: 0.39999998, z: -2.0179749}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.9, y: 0.9, z: 0.9}
   m_Children: []
   m_Father: {fileID: 0}
@@ -84,18 +83,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1960356125197558}
   m_Mesh: {fileID: 4300000, guid: 80a59cccf8e6dae43aec7ff89e88be2f, type: 3}
---- !u!65 &65567425196492328
-BoxCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1960356125197558}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 2, y: 2, z: 2}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &114401973729571366
 MonoBehaviour:
   m_ObjectHideFlags: 1
