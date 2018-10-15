@@ -17,6 +17,7 @@ public class Building : MonoBehaviour
     {
         gameManager.GetComponent<GameMan>().PurchaseBuilding(BuildCost, ContinuedCost);
         this.GetComponent<BuildingMovement>().ScriptActive = false;
+
     }
 
 }

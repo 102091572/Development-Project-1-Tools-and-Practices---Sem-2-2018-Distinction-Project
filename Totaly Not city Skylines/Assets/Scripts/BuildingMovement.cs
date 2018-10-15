@@ -6,31 +6,52 @@ public class BuildingMovement : MonoBehaviour {
 
     Vector3 target;
     Vector3 TruePos;
-    public float gridSpacing;
+    GameObject hitG0;
+    List<GameObject> SelectedGo;
+   
     public bool ScriptActive;
+    public Material deselctmat;
+    public Material SelectMat;
 
     private void Start()
     {
-        ScriptActive = true;
+        
+        SelectedGo = new List<GameObject>();
     }
     //While in placement mode the building follows the mouse snapping to the grid.
-    private void LateUpdate()
+    private void Update()
     {
-        if (ScriptActive)
-        {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
-            if (Physics.Raycast(ray, out hit))
+        
+            if (Input.GetMouseButtonDown(0))
             {
-                target = hit.point;
-                target = target + new Vector3(0.5f, 0, 0.5f);
+                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                RaycastHit hit;
+                if (Physics.Raycast(ray, out hit))
+                {
+
+                    hitG0 = hit.collider.gameObject;
+                    
+                }
+            if (hitG0.tag == "Free")
+            {
+                SelectedGo.Add(hitG0);
+                hitG0.tag = "selected";
+                Debug.Log("Selected");
             }
-
-            TruePos.x = Mathf.FloorToInt(target.x / gridSpacing) * gridSpacing;
-            TruePos.z = Mathf.FloorToInt(target.z / gridSpacing) * gridSpacing;
-            TruePos.y = 0;
-
-            this.transform.position = TruePos;
+            else if (hitG0.tag == "selected")
+            {
+                SelectedGo.Remove(hitG0);
+                hitG0.tag = "Free";
+                Debug.Log("deSelected");
+                hitG0.GetComponent<MeshRenderer>().material = deselctmat;
+            }
+            foreach (GameObject Go in SelectedGo)
+            {
+                Go.GetComponent<MeshRenderer>().material = SelectMat;
+                Debug.Log("Selected mat");
+            }
         }
-    }
+            
+        }
+    
 }

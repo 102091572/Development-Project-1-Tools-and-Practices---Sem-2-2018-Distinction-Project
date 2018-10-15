@@ -9,47 +9,45 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1008916692616096}
+  m_RootGameObject: {fileID: 1313134308318812}
   m_IsPrefabParent: 1
---- !u!1 &1008916692616096
+--- !u!1 &1313134308318812
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4992057346568060}
-  - component: {fileID: 33749767168174136}
-  - component: {fileID: 65483181321876742}
-  - component: {fileID: 23543085088569646}
-  - component: {fileID: 114783825359745430}
-  - component: {fileID: 114010976982903416}
+  - component: {fileID: 4203576878300914}
+  - component: {fileID: 33622124160695984}
+  - component: {fileID: 23672493969119476}
+  - component: {fileID: 114834392806864640}
   m_Layer: 0
-  m_Name: Power Station
-  m_TagString: Bank
+  m_Name: appartment 1
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4992057346568060
+--- !u!4 &4203576878300914
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1008916692616096}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 3.9}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_GameObject: {fileID: 1313134308318812}
+  m_LocalRotation: {x: -0.5, y: 0.5, z: 0.5, w: 0.5}
+  m_LocalPosition: {x: 11.92, y: 1.5300004, z: 4.1876}
+  m_LocalScale: {x: 1, y: 1, z: 2}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!23 &23543085088569646
+  m_LocalEulerAnglesHint: {x: -90, y: 90, z: 0}
+--- !u!23 &23672493969119476
 MeshRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1008916692616096}
+  m_GameObject: {fileID: 1313134308318812}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -58,7 +56,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: aff9a04aae54c5042b4b076b7e891f68, type: 2}
+  - {fileID: 2100000, guid: e2fa4dcf333e3674598f7a276fce05a9, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -66,7 +64,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
-  m_PreserveUVs: 1
+  m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
   m_StitchLightmapSeams: 0
@@ -78,49 +76,24 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!33 &33749767168174136
+--- !u!33 &33622124160695984
 MeshFilter:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1008916692616096}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!65 &65483181321876742
-BoxCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1008916692616096}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &114010976982903416
+  m_GameObject: {fileID: 1313134308318812}
+  m_Mesh: {fileID: 4300000, guid: 210701f9c0697d14fbab0e57a1d3a98a, type: 3}
+--- !u!114 &114834392806864640
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1008916692616096}
+  m_GameObject: {fileID: 1313134308318812}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 290453e9577e4d1479e1ea7c53d40bda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BuildCost: 1000
-  ContinuedCost: 20
+  BuildCost: 3000
+  ContinuedCost: 1000
   gameManager: {fileID: 0}
---- !u!114 &114783825359745430
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1008916692616096}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7fff0a44c9fe2884c858694e97c31827, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gridSpacing: 1
-  ScriptActive: 0

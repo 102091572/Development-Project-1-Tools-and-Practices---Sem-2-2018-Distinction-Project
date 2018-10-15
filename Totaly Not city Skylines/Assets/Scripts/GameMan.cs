@@ -105,7 +105,7 @@ public class GameMan : MonoBehaviour {
     {
         CostPerDay = CostPerDay - CostReduction;
     }
-    //exits the application 
+    //exits the application Called by ui event in game
     public void Exit()
     {
         Application.Quit();
