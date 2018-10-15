@@ -1,15 +1,37 @@
 fileFormatVersion: 2
-guid: 210701f9c0697d14fbab0e57a1d3a98a
-timeCreated: 1539573202
+guid: 0c8215910e580694db7aa9bc2e70304c
+timeCreated: 1539585149
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
-    100000: //RootNode
-    400000: //RootNode
-    2300000: //RootNode
-    3300000: //RootNode
-    4300000: Cube
+    100000: Cube
+    100002: Cylinder
+    100004: Cylinder_001
+    100006: Cylinder_002
+    100008: Cylinder_003
+    100010: //RootNode
+    400000: Cube
+    400002: Cylinder
+    400004: Cylinder_001
+    400006: Cylinder_002
+    400008: Cylinder_003
+    400010: //RootNode
+    2300000: Cube
+    2300002: Cylinder
+    2300004: Cylinder_001
+    2300006: Cylinder_002
+    2300008: Cylinder_003
+    3300000: Cube
+    3300002: Cylinder
+    3300004: Cylinder_001
+    3300006: Cylinder_002
+    3300008: Cylinder_003
+    4300000: Cylinder
+    4300002: Cube
+    4300004: Cylinder_001
+    4300006: Cylinder_002
+    4300008: Cylinder_003
     7400000: Default Take
     9500000: //RootNode
   externalObjects:
@@ -17,7 +39,7 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: unnamed
-    second: {fileID: 2100000, guid: ed1db08ad78e4f947a4cb97b8710e657, type: 2}
+    second: {fileID: 2100000, guid: 68611ff84eb7c424d8c11888e5976202, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
@@ -70,7 +92,7 @@ ModelImporter:
     normalImportMode: 0
     tangentImportMode: 3
     normalCalculationMode: 4
-  importAnimation: 0
+  importAnimation: 1
   copyAvatar: 0
   humanDescription:
     serializedVersion: 2
@@ -89,7 +111,7 @@ ModelImporter:
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 0
+  animationType: 2
   humanoidOversampling: 1
   additionalBone: 0
   userData: 

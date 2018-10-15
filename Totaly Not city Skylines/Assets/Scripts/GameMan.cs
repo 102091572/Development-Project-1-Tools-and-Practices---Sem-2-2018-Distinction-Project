@@ -13,14 +13,14 @@ public class GameMan : MonoBehaviour {
     public int Pop;
     
 
-    private int Power;
-    private int PowerCap;
-    private int PopCap = 50;
+    public int Power;
+    public int PowerCap;
+    public int PopCap = 50;
     
-    private int Day = 0;
-    private int TaxPerDay = 50;
-    private int CostPerDay = 0;
-    private int GainPerDay;
+    public int Day = 0;
+    public int TaxPerDay = 50;
+    public int CostPerDay = 0;
+    public int GainPerDay;
 
 
     public Text DayText;
