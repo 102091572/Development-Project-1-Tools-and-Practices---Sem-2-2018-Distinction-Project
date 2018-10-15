@@ -122,11 +122,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4359184355890504}
   - component: {fileID: 114764465064874002}
-  - component: {fileID: 65307251227733214}
-  - component: {fileID: 114200980076791554}
   m_Layer: 0
   m_Name: power station
-  m_TagString: Building
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -177,7 +175,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1874746164289634}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 8.169794, y: 0.4000002, z: -2.3331718}
+  m_LocalPosition: {x: -1.8459816, y: 0.50000024, z: -0.8990822}
   m_LocalScale: {x: 0.9, y: 0.9, z: 0.9}
   m_Children:
   - {fileID: 4819004787910610}
@@ -433,30 +431,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1365342854946428}
   m_Mesh: {fileID: 4300006, guid: 0c8215910e580694db7aa9bc2e70304c, type: 3}
---- !u!65 &65307251227733214
-BoxCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1874746164289634}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &114200980076791554
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1874746164289634}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 119e991469954a9448dc4f1e5040f40b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameManager: {fileID: 0}
 --- !u!114 &114764465064874002
 MonoBehaviour:
   m_ObjectHideFlags: 1

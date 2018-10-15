@@ -9,47 +9,45 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1636113800523390}
+  m_RootGameObject: {fileID: 1387745592712960}
   m_IsPrefabParent: 1
---- !u!1 &1636113800523390
+--- !u!1 &1387745592712960
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4783740674940450}
-  - component: {fileID: 33429720766309256}
-  - component: {fileID: 23073342286388568}
-  - component: {fileID: 65446082384469224}
-  - component: {fileID: 114225902200004678}
-  - component: {fileID: 114101638687391394}
+  - component: {fileID: 4398034013025586}
+  - component: {fileID: 33968859610884764}
+  - component: {fileID: 23241927305698832}
+  - component: {fileID: 114370563785643900}
   m_Layer: 0
-  m_Name: workplace
-  m_TagString: Building
+  m_Name: Bank
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4783740674940450
+--- !u!4 &4398034013025586
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1636113800523390}
+  m_GameObject: {fileID: 1387745592712960}
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 13.818143, y: 0.7000003, z: -2.5159912}
-  m_LocalScale: {x: 0.9, y: 0.9, z: 2}
+  m_LocalPosition: {x: -2.8034573, y: 1.0000004, z: 0.15644264}
+  m_LocalScale: {x: 0.9, y: 0.9, z: 0.9}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!23 &23073342286388568
+--- !u!23 &23241927305698832
 MeshRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1636113800523390}
+  m_GameObject: {fileID: 1387745592712960}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -58,7 +56,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: ddb7611c18fc47f4fbff429e7349b189, type: 2}
+  - {fileID: 2100000, guid: 52dc01bf102f7394880a0fa184a74851, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -78,49 +76,24 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!33 &33429720766309256
+--- !u!33 &33968859610884764
 MeshFilter:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1636113800523390}
-  m_Mesh: {fileID: 4300000, guid: af7b0b06416b2da4f98b1876f8bbeb4a, type: 3}
---- !u!65 &65446082384469224
-BoxCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1636113800523390}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 2, y: 2.0000005, z: 1.2000003}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &114101638687391394
+  m_GameObject: {fileID: 1387745592712960}
+  m_Mesh: {fileID: 4300000, guid: 50276b81489fae346a0bc60e06ffed55, type: 3}
+--- !u!114 &114370563785643900
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1636113800523390}
+  m_GameObject: {fileID: 1387745592712960}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 290453e9577e4d1479e1ea7c53d40bda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BuildCost: 250
+  BuildCost: 400
   ContinuedCost: 100
-  gameManager: {fileID: 0}
-  _gameMan: {fileID: 0}
---- !u!114 &114225902200004678
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1636113800523390}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 119e991469954a9448dc4f1e5040f40b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
   gameManager: {fileID: 0}
