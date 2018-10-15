@@ -129,7 +129,7 @@ public class GameMan : MonoBehaviour {
     // When a workplace is created the max no. of employees rises
     public void IncreaseJobCap(int JobGrowth)
     {
-        JobCap += JobGrowth;
+        JobCap = JobCap + JobGrowth;
     }
 
     //exits the application 

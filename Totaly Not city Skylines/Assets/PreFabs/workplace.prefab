@@ -21,9 +21,9 @@ GameObject:
   - component: {fileID: 4783740674940450}
   - component: {fileID: 33429720766309256}
   - component: {fileID: 23073342286388568}
-  - component: {fileID: 114233414353517878}
   - component: {fileID: 65446082384469224}
   - component: {fileID: 114225902200004678}
+  - component: {fileID: 114101638687391394}
   m_Layer: 0
   m_Name: workplace
   m_TagString: Building
@@ -97,6 +97,21 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2, y: 2.0000005, z: 1.2000003}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &114101638687391394
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1636113800523390}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 290453e9577e4d1479e1ea7c53d40bda, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BuildCost: 250
+  ContinuedCost: 100
+  gameManager: {fileID: 0}
+  _gameMan: {fileID: 0}
 --- !u!114 &114225902200004678
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -108,18 +123,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 119e991469954a9448dc4f1e5040f40b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameManager: {fileID: 0}
---- !u!114 &114233414353517878
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1636113800523390}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 290453e9577e4d1479e1ea7c53d40bda, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  BuildCost: 400
-  ContinuedCost: 100
   gameManager: {fileID: 0}

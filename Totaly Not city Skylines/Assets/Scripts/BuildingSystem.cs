@@ -46,6 +46,7 @@ public class BuildingSystem : MonoBehaviour {
     private int _costBuild;
     private int _dayCostBuild;
     private int deleteRefund;
+    public int MaxWorkers = 60;
 
 
     //public bool ScriptActive;
@@ -286,8 +287,11 @@ public class BuildingSystem : MonoBehaviour {
         {
             foreach (GameObject GridPoint in SelectedGo)
             {
-                Instantiate(ToBeBuilt, GridPoint.transform.position + new Vector3(0,1.5f,0),ToBeBuilt.transform.rotation);
+                GameObject gose = (GameObject)Instantiate(ToBeBuilt, GridPoint.transform.position + new Vector3(0,1.5f,0),ToBeBuilt.transform.rotation);
                 this.GetComponent<GameMan>().PurchaseBuilding(_cost, _daycost);
+                if (CurrentBuildType == 3) {
+                     gameManager.GetComponent<GameMan>().IncreaseJobCap(MaxWorkers);
+                }
 
             }
             BuildType(5);
