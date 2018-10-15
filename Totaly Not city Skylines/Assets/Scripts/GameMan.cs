@@ -13,15 +13,17 @@ public class GameMan : MonoBehaviour {
     private int Employed; // Total no. of employed people
     private int JobCap; // total no. of available jobs
 
-    private int Power;
-    private int PowerCap;
-    private int PopCap = 50;
+    public int Power;
+    public int PowerCap;
+    public int PopCap = 50;
     
-    private int Day = 0;
-    private int TaxPerDay = 50;
-    private int CostPerDay = 0;
-    private int GainPerDay;
- 
+
+    public int Day = 0;
+    public int TaxPerDay = 50;
+    public int CostPerDay = 0;
+    public int GainPerDay;
+
+
 
     public Text DayText;
     public Text MoneyText;
@@ -122,6 +124,7 @@ public class GameMan : MonoBehaviour {
         CostPerDay = CostPerDay - CostReduction;
     }
 
+
     /* Called when Workplace building is created */
     // When a workplace is created the max no. of employees rises
     public void IncreaseJobCap(int JobGrowth)
@@ -130,6 +133,7 @@ public class GameMan : MonoBehaviour {
     }
 
     //exits the application 
+
     public void Exit()
     {
         Application.Quit();

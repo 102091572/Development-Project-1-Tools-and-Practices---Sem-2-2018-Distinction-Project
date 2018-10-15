@@ -34,3 +34,5 @@ sysinfo.txt
 # Builds
 *.apk
 *.unitypackage
+*.mat
+Totaly Not city Skylines/Assets/Materials/Bank.mat
