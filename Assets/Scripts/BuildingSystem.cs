@@ -286,13 +286,30 @@ public class BuildingSystem : MonoBehaviour {
         {
             foreach (GameObject GridPoint in SelectedGo)
             {
+
+                /* THE METHODS CALLED ON BUILDING CREATION GO AFTER HERE:*/
+                switch (CurrentBuildType)
+                {
+                    // BANK
+                    case 1:
+                        break;
+
+                    // APARTMENT
+                    case 2:
+                        break;
+
+                    // WORKPLACE
+                    case 3:
+                        break;
+
+                    // POWER
+                    case 4:
+                        break;
+                }
                 Instantiate(ToBeBuilt, GridPoint.transform.position + new Vector3(0,1.5f,0),ToBeBuilt.transform.rotation);
                 this.GetComponent<GameMan>().PurchaseBuilding(_cost, _daycost);
-
             }
             BuildType(5);
-            
-
         }
         else
         {
@@ -300,9 +317,6 @@ public class BuildingSystem : MonoBehaviour {
             BuildType(5);
         }
         BuildType(5);
-        
-        
-
     }
 
     //Function for displaying error msgs can pass any error to save on repeating code
