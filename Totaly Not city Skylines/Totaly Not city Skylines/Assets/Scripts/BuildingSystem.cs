@@ -41,6 +41,7 @@ public class BuildingSystem : MonoBehaviour {
     List<GameObject> SelectedGo;
     private int _cost;
     private int _daycost;
+    private int _powercost;
     private int _costBuild;
     private int _dayCostBuild;
 
@@ -81,6 +82,7 @@ public class BuildingSystem : MonoBehaviour {
                 ToBeBuilt = BankPreFab;
                 _cost = BankPreFab.GetComponent<Building>().BuildCost;
                 _daycost = BankPreFab.GetComponent<Building>().ContinuedCost;
+                _powercost = BankPreFab.GetComponent<Building>().PowerCost;
                 ToBuildCostPannel.gameObject.SetActive(true);
                 BuildMenuOptions.gameObject.SetActive(false);
                 break;
@@ -90,6 +92,7 @@ public class BuildingSystem : MonoBehaviour {
                 ToBeBuilt = ApartmentPreFab;
                 _cost = ApartmentPreFab.GetComponent<Building>().BuildCost;
                 _daycost = ApartmentPreFab.GetComponent<Building>().ContinuedCost;
+                _powercost = ApartmentPreFab.GetComponent<Building>().PowerCost;
                 ToBuildCostPannel.gameObject.SetActive(true);
                 BuildMenuOptions.gameObject.SetActive(false);
                 break;
@@ -99,6 +102,7 @@ public class BuildingSystem : MonoBehaviour {
                 ToBeBuilt = WorkPlacePreFab;
                 _cost = WorkPlacePreFab.GetComponent<Building>().BuildCost;
                 _daycost = WorkPlacePreFab.GetComponent<Building>().ContinuedCost;
+                _powercost = WorkPlacePreFab.GetComponent<Building>().PowerCost;
                 ToBuildCostPannel.gameObject.SetActive(true);
                 BuildMenuOptions.gameObject.SetActive(false);
                 break;
@@ -108,6 +112,7 @@ public class BuildingSystem : MonoBehaviour {
                 ToBeBuilt = PowerStationPreFab;
                 _cost = PowerStationPreFab.GetComponent<Building>().BuildCost;
                 _daycost = PowerStationPreFab.GetComponent<Building>().ContinuedCost;
+                gameManager.GetComponent<GameMan>().IncreasePowerCap(50);
                 ToBuildCostPannel.gameObject.SetActive(true);
                 BuildMenuOptions.gameObject.SetActive(false);
                 break;
@@ -219,7 +224,7 @@ public class BuildingSystem : MonoBehaviour {
             foreach (GameObject GridPoint in SelectedGo)
             {
                 Instantiate(ToBeBuilt, GridPoint.transform.position + new Vector3(0,1.5f,0),ToBeBuilt.transform.rotation);
-                this.GetComponent<GameMan>().PurchaseBuilding(_cost, _daycost);
+                this.GetComponent<GameMan>().PurchaseBuilding(_cost, _daycost,_powercost);
 
             }
             BuildType(5);
