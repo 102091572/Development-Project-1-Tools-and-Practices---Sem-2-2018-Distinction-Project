@@ -300,6 +300,7 @@ public class BuildingSystem : MonoBehaviour {
 
                     // WORKPLACE
                     case 3:
+                        this.GetComponent<GameMan>().IncreaseWorkerCap(50);
                         break;
 
                     // POWER
