@@ -10,12 +10,15 @@ public class GameMan : MonoBehaviour {
     public int Money;
 
 
-    public int Pop;
-    
+    public int Pop = 50;
+    public int PopCap = 50;
+
+    public int Workers = 10;
+    public int WorkerCap = 30;
 
     public int Power;
     public int PowerCap;
-    public int PopCap = 50;
+
     
     public int Day = 0;
     public int TaxPerDay = 50;
@@ -56,9 +59,28 @@ public class GameMan : MonoBehaviour {
         {
             Pop = PopCap;
         }
+
+        if (Workers > WorkerCap)
+        {
+            Workers = WorkerCap;
+        }
+
+        if (Workers > Pop)
+        {
+            Workers = Pop;
+        }
+
+        // City gains workers if there are enough people and workplaces 
+        if (Workers < WorkerCap && Workers < Pop)
+        {
+            Workers += 2;
+        }
+
         //calcs how much money we are makeing/losing and changes the money value
-        GainPerDay = Pop * TaxPerDay;
-        Money = Money + (GainPerDay - CostPerDay);
+        GainPerDay = Workers * TaxPerDay; // Earn $50 per worker per day
+
+        Money += GainPerDay - CostPerDay;
+       
         
         //Must be called last in loop as it starts the loop again
         StartCoroutine(DayCycle());
@@ -99,6 +121,12 @@ public class GameMan : MonoBehaviour {
     public void IncreasePopCap(int PopCapIncrease)
     {
         PopCap = PopCapIncrease;
+    }
+
+    // Called when workplace is created
+    public void IncreaseWorkerCap(int WorkerIncrease)
+    {
+        WorkerCap += WorkerIncrease;
     }
     //called when building is destroyed 
     public void BuildingDestroyed(int CostReduction)
