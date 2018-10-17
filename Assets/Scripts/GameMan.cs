@@ -99,10 +99,11 @@ public class GameMan : MonoBehaviour {
 
     }
     //called when a building is placed 
-    public void PurchaseBuilding(int BuildCost,int ContinuedCost)
+    public void PurchaseBuilding(int BuildCost,int ContinuedCost, int PowerCost)
     {
         Money = Money - BuildCost;
         CostPerDay = CostPerDay + ContinuedCost;
+        Power = Power + PowerCost;
     }
 
     public void AddPopulation(int PopIncrease)
@@ -123,11 +124,20 @@ public class GameMan : MonoBehaviour {
         PopCap = PopCapIncrease;
     }
 
+
     // Called when workplace is created
     public void IncreaseWorkerCap(int WorkerIncrease)
     {
         WorkerCap += WorkerIncrease;
     }
+
+    //called when a building reqiuires power
+    public void IncreasePowerCap(int PowerCapIncrease)
+    {
+        PowerCap = PowerCapIncrease;
+    }
+
+
     //called when building is destroyed 
     public void BuildingDestroyed(int CostReduction)
     {
