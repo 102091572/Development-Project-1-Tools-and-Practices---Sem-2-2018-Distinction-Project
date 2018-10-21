@@ -38,7 +38,7 @@ public class GameMan : MonoBehaviour {
     void Start () {
         Money = StartingMoney;
         PopCap = 51;
-        Pop = 55;
+        Pop = 47;
         StartCoroutine(DayCycle());
         PowerCap = 5;
 	}
@@ -75,6 +75,9 @@ public class GameMan : MonoBehaviour {
         {
             Workers += 2;
         }
+
+        //City gains population if there are enough population capaticy
+        AddPopulation(2);
 
         //calcs how much money we are makeing/losing and changes the money value
         GainPerDay = Workers * TaxPerDay; // Earn $50 per worker per day
@@ -121,7 +124,7 @@ public class GameMan : MonoBehaviour {
     //called when apartment building is created
     public void IncreasePopCap(int PopCapIncrease)
     {
-        PopCap = PopCapIncrease;
+        PopCap += PopCapIncrease;
     }
 
 
@@ -134,7 +137,13 @@ public class GameMan : MonoBehaviour {
     //called when a building reqiuires power
     public void IncreasePowerCap(int PowerCapIncrease)
     {
-        PowerCap = PowerCapIncrease;
+        PowerCap += PowerCapIncrease;
+    }
+
+    // Called when Bank is created
+    public void IncreaseMoneyCap(int MoneyCapIncrease)
+    {
+        MoneyCap += MoneyCapIncrease;
     }
 
 

@@ -112,7 +112,6 @@ public class BuildingSystem : MonoBehaviour {
                 ToBeBuilt = PowerStationPreFab;
                 _cost = PowerStationPreFab.GetComponent<Building>().BuildCost;
                 _daycost = PowerStationPreFab.GetComponent<Building>().ContinuedCost;
-                gameManager.GetComponent<GameMan>().IncreasePowerCap(50);
                 ToBuildCostPannel.gameObject.SetActive(true);
                 BuildMenuOptions.gameObject.SetActive(false);
                 break;
@@ -228,10 +227,13 @@ public class BuildingSystem : MonoBehaviour {
                 {
                     // BANK
                     case 1:
+                        this.GetComponent<GameMan>().IncreaseMoneyCap(500);
                         break;
 
                     // APARTMENT
                     case 2:
+                        //Population increases when an apartment building is created
+                        this.GetComponent<GameMan>().IncreasePopCap(25);
                         break;
 
                     // WORKPLACE
@@ -241,6 +243,7 @@ public class BuildingSystem : MonoBehaviour {
 
                     // POWER
                     case 4:
+                        this.GetComponent<GameMan>().IncreasePowerCap(50);
                         break;
                 }
 
