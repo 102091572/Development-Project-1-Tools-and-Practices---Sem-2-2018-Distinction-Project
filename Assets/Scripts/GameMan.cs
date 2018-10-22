@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class GameMan : MonoBehaviour {
+public class GameMan : MonoBehaviour
+{
     private int MoneyCap = 20000;
     public int StartingMoney;
 
@@ -19,7 +20,7 @@ public class GameMan : MonoBehaviour {
     public int Power;
     public int PowerCap;
 
-    
+
     public int Day = 0;
     public int TaxPerDay = 50;
     public int CostPerDay = 0;
@@ -35,13 +36,14 @@ public class GameMan : MonoBehaviour {
 
     //sets defults
     // Use this for initialization
-    void Start () {
+    void Start()
+    {
         Money = StartingMoney;
         PopCap = 51;
-        Pop = 55;
+        Pop = 47;
         StartCoroutine(DayCycle());
         PowerCap = 5;
-	}
+    }
 
     //GameLoop
     IEnumerator DayCycle()
@@ -49,7 +51,7 @@ public class GameMan : MonoBehaviour {
         //each day loop / game loops are 5 seconds
         yield return new WaitForSeconds(5);
         Day++;
-      //validation to ensure correct values 
+        //validation to ensure correct values 
         if (Money > MoneyCap)
         {
             Money = MoneyCap;
@@ -76,19 +78,23 @@ public class GameMan : MonoBehaviour {
             Workers += 2;
         }
 
+        //City gains population if there are enough population capaticy
+        AddPopulation(2);
+
         //calcs how much money we are makeing/losing and changes the money value
         GainPerDay = Workers * TaxPerDay; // Earn $50 per worker per day
 
         Money += GainPerDay - CostPerDay;
-       
-        
+
+
         //Must be called last in loop as it starts the loop again
         StartCoroutine(DayCycle());
     }
 
-	// Update is called once per frame
+    // Update is called once per frame
     //Updates the ui with the correct values
-	void Update () {
+    void Update()
+    {
         DayText.text = "Day : " + Day.ToString();
         MoneyText.text = "$ " + Money.ToString() + " / " + MoneyCap.ToString();
         PopText.text = "Population : " + Pop.ToString() + " / " + PopCap.ToString();
@@ -99,7 +105,7 @@ public class GameMan : MonoBehaviour {
 
     }
     //called when a building is placed 
-    public void PurchaseBuilding(int BuildCost,int ContinuedCost, int PowerCost)
+    public void PurchaseBuilding(int BuildCost, int ContinuedCost, int PowerCost)
     {
         Money = Money - BuildCost;
         CostPerDay = CostPerDay + ContinuedCost;
@@ -107,7 +113,7 @@ public class GameMan : MonoBehaviour {
     }
 
     public void AddPopulation(int PopIncrease)
-        //validation to ensure population is not over cap
+    //validation to ensure population is not over cap
     {
         if (Pop + PopIncrease > PopCap)
         {
@@ -121,7 +127,7 @@ public class GameMan : MonoBehaviour {
     //called when apartment building is created
     public void IncreasePopCap(int PopCapIncrease)
     {
-        PopCap = PopCapIncrease;
+        PopCap += PopCapIncrease;
     }
 
 
@@ -134,7 +140,13 @@ public class GameMan : MonoBehaviour {
     //called when a building reqiuires power
     public void IncreasePowerCap(int PowerCapIncrease)
     {
-        PowerCap = PowerCapIncrease;
+        PowerCap += PowerCapIncrease;
+    }
+
+    // Called when Bank is created
+    public void IncreaseMoneyCap(int MoneyCapIncrease)
+    {
+        MoneyCap += MoneyCapIncrease;
     }
 
 

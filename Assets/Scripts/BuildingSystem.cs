@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class BuildingSystem : MonoBehaviour {
+public class BuildingSystem : MonoBehaviour
+{
 
     //buildingplacement vars
     public GameObject BuildMenu;
@@ -23,7 +24,7 @@ public class BuildingSystem : MonoBehaviour {
     public Text ErrorText;
     public GameObject ErrorTextParent;
 
-   
+
     public bool PauseGameBool;
 
     public Text Costtobuild;
@@ -54,25 +55,26 @@ public class BuildingSystem : MonoBehaviour {
 
     private void Start()
     {
-        
+
         SelectedGo = new List<GameObject>();
         gridpointsParent.SetActive(false);
         BuildType(5);
-       
+
     }
 
     //Changing build states and showing / hiding ui elements.
 
 
 
-   
 
-    public void BuildType(int buildingType) {
-        
+
+    public void BuildType(int buildingType)
+    {
+
         buildSelectModeBool = true;
         CurrentBuildType = buildingType;
         //ui show
-        
+
 
         switch (buildingType)
         {
@@ -112,28 +114,27 @@ public class BuildingSystem : MonoBehaviour {
                 ToBeBuilt = PowerStationPreFab;
                 _cost = PowerStationPreFab.GetComponent<Building>().BuildCost;
                 _daycost = PowerStationPreFab.GetComponent<Building>().ContinuedCost;
-                gameManager.GetComponent<GameMan>().IncreasePowerCap(50);
                 ToBuildCostPannel.gameObject.SetActive(true);
                 BuildMenuOptions.gameObject.SetActive(false);
                 break;
             case 5:
                 //no build object
-                
+
                 BuildMenu.gameObject.SetActive(true);
                 BuildMenuOptions.gameObject.SetActive(false);
-                
+
                 ToBuildCostPannel.gameObject.SetActive(false);
                 foreach (GameObject point in SelectedGo)
                 {
                     point.tag = "Free";
                     point.GetComponent<MeshRenderer>().material = deselctmat;
-                    
+
                 }
                 SelectedGo.Clear();
                 gridpointsParent.SetActive(false);
                 break;
             case 6:
-                
+
                 BuildMenu.gameObject.SetActive(false);
                 BuildMenuOptions.gameObject.SetActive(true);
                 gridpointsParent.SetActive(false);
@@ -144,7 +145,7 @@ public class BuildingSystem : MonoBehaviour {
         }
 
     }
-   
+
     //While in placement mode the building follows the mouse snapping to the grid.
     private void Update()
     {
@@ -156,8 +157,8 @@ public class BuildingSystem : MonoBehaviour {
         {
             Build();
         }
-            //The escape key handles backing out of menus and pauseing the game
-            if (Input.GetKeyDown(KeyCode.Escape))
+        //The escape key handles backing out of menus and pauseing the game
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
             //rework esc key
             if (CurrentBuildType != 5)
@@ -165,15 +166,15 @@ public class BuildingSystem : MonoBehaviour {
                 BuildType(5);
             }
             else if (PauseGameBool == false)
-                {
-                    PauseGame();
-                    PauseGameBool = true;
-                }
-            
+            {
+                PauseGame();
+                PauseGameBool = true;
+            }
+
         }
 
         //good update
-        if (CurrentBuildType!= 5)
+        if (CurrentBuildType != 5)
         {
             if (Input.GetMouseButtonDown(0))
             {
@@ -203,7 +204,7 @@ public class BuildingSystem : MonoBehaviour {
 
                 foreach (GameObject Go in SelectedGo)
                 {
-                    
+
                     Go.GetComponent<MeshRenderer>().material = SelectMat;
                     Debug.Log("Selected mat");
                     _costBuild = _costBuild + _cost;
@@ -214,10 +215,10 @@ public class BuildingSystem : MonoBehaviour {
         }
     }
 
-   //rework places buildings at all selected location if money is enough when build button pressed
+    //rework places buildings at all selected location if money is enough when build button pressed
     public void Build()
     {
-        
+
         //ensures you have enough money to build else throws an error
         if (this.GetComponent<GameMan>().Money > _costBuild)
         {
@@ -228,10 +229,13 @@ public class BuildingSystem : MonoBehaviour {
                 {
                     // BANK
                     case 1:
+                        this.GetComponent<GameMan>().IncreaseMoneyCap(500);
                         break;
 
                     // APARTMENT
                     case 2:
+                        //Population increases when an apartment building is created
+                        this.GetComponent<GameMan>().IncreasePopCap(25);
                         break;
 
                     // WORKPLACE
@@ -241,15 +245,16 @@ public class BuildingSystem : MonoBehaviour {
 
                     // POWER
                     case 4:
+                        this.GetComponent<GameMan>().IncreasePowerCap(50);
                         break;
                 }
 
-                Instantiate(ToBeBuilt, GridPoint.transform.position + new Vector3(0,1.5f,0),ToBeBuilt.transform.rotation);
-                this.GetComponent<GameMan>().PurchaseBuilding(_cost, _daycost,_powercost);
+                Instantiate(ToBeBuilt, GridPoint.transform.position + new Vector3(0, 1.5f, 0), ToBeBuilt.transform.rotation);
+                this.GetComponent<GameMan>().PurchaseBuilding(_cost, _daycost, _powercost);
 
             }
             BuildType(5);
-            
+
 
         }
         else
@@ -258,8 +263,8 @@ public class BuildingSystem : MonoBehaviour {
             BuildType(5);
         }
         BuildType(5);
-        
-        
+
+
 
     }
 
@@ -278,7 +283,7 @@ public class BuildingSystem : MonoBehaviour {
     }
 
 
-    
+
 
     public void PauseGame()
     {
@@ -292,5 +297,5 @@ public class BuildingSystem : MonoBehaviour {
         PauseGameBool = false;
     }
 
-     
+
 }
