@@ -1,3 +1,4 @@
+
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -33,6 +34,7 @@ public class GameMan : MonoBehaviour
     public Text PowerText;
     public Text CostText;
     public Text GainText;
+    public Text JobText;
 
     //sets defults
     // Use this for initialization
@@ -51,6 +53,42 @@ public class GameMan : MonoBehaviour
         //each day loop / game loops are 5 seconds
         yield return new WaitForSeconds(5);
         Day++;
+
+         if (Money > MoneyCap)
+        {
+            Money = MoneyCap;
+        }
+
+        if (Pop > PopCap)
+        {
+            Pop = PopCap;
+        }
+
+        if (Workers > WorkerCap)
+        {
+            Workers = WorkerCap;
+        }
+
+        if (Workers > Pop)
+        {
+            Workers = Pop;
+        }
+        
+
+        // City gains workers if there are enough people and workplaces 
+        if (Workers < WorkerCap && Workers < Pop)
+        {
+            Workers += 2;
+        }
+
+        //City gains population if there are enough population capaticy
+        AddPopulation(2);
+
+        //calcs how much money we are makeing/losing and changes the money value
+        GainPerDay = Workers * TaxPerDay; // Earn $50 per worker per day
+
+        Money += GainPerDay - CostPerDay;
+
         //validation to ensure correct values 
         if (Money > MoneyCap)
         {
@@ -72,21 +110,6 @@ public class GameMan : MonoBehaviour
             Workers = Pop;
         }
 
-        // City gains workers if there are enough people and workplaces 
-        if (Workers < WorkerCap && Workers < Pop)
-        {
-            Workers += 2;
-        }
-
-        //City gains population if there are enough population capaticy
-        AddPopulation(2);
-
-        //calcs how much money we are makeing/losing and changes the money value
-        GainPerDay = Workers * TaxPerDay; // Earn $50 per worker per day
-
-        Money += GainPerDay - CostPerDay;
-
-
         //Must be called last in loop as it starts the loop again
         StartCoroutine(DayCycle());
     }
@@ -101,6 +124,9 @@ public class GameMan : MonoBehaviour
         PowerText.text = "Power : " + Power.ToString() + " / " + PowerCap.ToString();
         CostText.text = "- " + CostPerDay.ToString() + " Per day";
         GainText.text = "+ " + GainPerDay.ToString() + " Per day";
+        JobText.text = "Employment : " + Workers.ToString() + " / " + WorkerCap.ToString();
+
+
 
 
     }
@@ -161,3 +187,4 @@ public class GameMan : MonoBehaviour
         Application.Quit();
     }
 }
+

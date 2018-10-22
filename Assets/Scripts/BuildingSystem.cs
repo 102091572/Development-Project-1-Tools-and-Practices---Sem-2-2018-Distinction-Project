@@ -1,3 +1,4 @@
+
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -230,28 +231,35 @@ public class BuildingSystem : MonoBehaviour
                     // BANK
                     case 1:
                         this.GetComponent<GameMan>().IncreaseMoneyCap(500);
+                        _powercost = 1;
                         break;
 
                     // APARTMENT
                     case 2:
                         //Population increases when an apartment building is created
                         this.GetComponent<GameMan>().IncreasePopCap(25);
+                        _powercost = 1;
                         break;
 
                     // WORKPLACE
                     case 3:
                         this.GetComponent<GameMan>().IncreaseWorkerCap(50);
+                        _powercost = 1;
                         break;
 
                     // POWER
                     case 4:
-                        this.GetComponent<GameMan>().IncreasePowerCap(50);
+                        this.GetComponent<GameMan>().IncreasePowerCap(5);
+                        _powercost = 0;
                         break;
                 }
 
-                Instantiate(ToBeBuilt, GridPoint.transform.position + new Vector3(0, 1.5f, 0), ToBeBuilt.transform.rotation);
-                this.GetComponent<GameMan>().PurchaseBuilding(_cost, _daycost, _powercost);
-
+                if (_powercost + this.GetComponent<GameMan> ().Power <= this.GetComponent<GameMan> ().PowerCap) {
+                    Instantiate (ToBeBuilt, GridPoint.transform.position + new Vector3 (0, 1.5f, 0), ToBeBuilt.transform.rotation);
+                    this.GetComponent<GameMan> ().PurchaseBuilding (_cost, _daycost, _powercost);
+                } else {
+                    Error("Not enough power to build");
+                }
             }
             BuildType(5);
 
