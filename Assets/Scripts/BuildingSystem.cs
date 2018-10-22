@@ -112,9 +112,8 @@ public class BuildingSystem : MonoBehaviour {
                 ToBeBuilt = PowerStationPreFab;
                 _cost = PowerStationPreFab.GetComponent<Building>().BuildCost;
                 _daycost = PowerStationPreFab.GetComponent<Building>().ContinuedCost;
-                gameManager.GetComponent<GameMan>().IncreasePowerCap(50);
-                ToBuildCostPannel.gameObject.SetActive(true);
-                BuildMenuOptions.gameObject.SetActive(false);
+				ToBuildCostPannel.gameObject.SetActive(true);
+				BuildMenuOptions.gameObject.SetActive(false);
                 break;
             case 5:
                 //no build object
@@ -223,29 +222,42 @@ public class BuildingSystem : MonoBehaviour {
         {
             foreach (GameObject GridPoint in SelectedGo)
             {
+				
                 /* THE METHODS CALLED ON BUILDING CREATION GO AFTER HERE:*/
                 switch (CurrentBuildType)
                 {
                     // BANK
                     case 1:
+						//this.GetComponent<GameMan>().IncreasePowerUsage(1);
+					_powercost = 1;
                         break;
 
                     // APARTMENT
                     case 2:
+					_powercost = 1;
+					//this.GetComponent<GameMan>().IncreasePowerUsage(1);
                         break;
 
                     // WORKPLACE
                     case 3:
+					_powercost = 1;
                         this.GetComponent<GameMan>().IncreaseWorkerCap(50);
+						//this.GetComponent<GameMan>().IncreasePowerUsage(1);
                         break;
 
                     // POWER
                     case 4:
+					_powercost = 0;
+					
+					this.GetComponent<GameMan>().IncreasePowerCap(5);
                         break;
                 }
-
-                Instantiate(ToBeBuilt, GridPoint.transform.position + new Vector3(0,1.5f,0),ToBeBuilt.transform.rotation);
-                this.GetComponent<GameMan>().PurchaseBuilding(_cost, _daycost,_powercost);
+				if (_powercost + this.GetComponent<GameMan> ().Power <= this.GetComponent<GameMan> ().PowerCap) {
+					Instantiate (ToBeBuilt, GridPoint.transform.position + new Vector3 (0, 1.5f, 0), ToBeBuilt.transform.rotation);
+					this.GetComponent<GameMan> ().PurchaseBuilding (_cost, _daycost, _powercost);
+				} else {
+					Error("Not enough power to build");
+				}
 
             }
             BuildType(5);

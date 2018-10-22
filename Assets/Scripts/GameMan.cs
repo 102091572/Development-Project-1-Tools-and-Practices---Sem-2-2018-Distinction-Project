@@ -32,6 +32,7 @@ public class GameMan : MonoBehaviour {
     public Text PowerText;
     public Text CostText;
     public Text GainText;
+	public Text JobText;
 
     //sets defults
     // Use this for initialization
@@ -49,26 +50,7 @@ public class GameMan : MonoBehaviour {
         //each day loop / game loops are 5 seconds
         yield return new WaitForSeconds(5);
         Day++;
-      //validation to ensure correct values 
-        if (Money > MoneyCap)
-        {
-            Money = MoneyCap;
-        }
-
-        if (Pop > PopCap)
-        {
-            Pop = PopCap;
-        }
-
-        if (Workers > WorkerCap)
-        {
-            Workers = WorkerCap;
-        }
-
-        if (Workers > Pop)
-        {
-            Workers = Pop;
-        }
+      
 
         // City gains workers if there are enough people and workplaces 
         if (Workers < WorkerCap && Workers < Pop)
@@ -81,6 +63,26 @@ public class GameMan : MonoBehaviour {
 
         Money += GainPerDay - CostPerDay;
        
+		//validation to ensure correct values 
+		if (Money > MoneyCap)
+		{
+			Money = MoneyCap;
+		}
+
+		if (Pop > PopCap)
+		{
+			Pop = PopCap;
+		}
+
+		if (Workers > WorkerCap)
+		{
+			Workers = WorkerCap;
+		}
+
+		if (Workers > Pop)
+		{
+			Workers = Pop;
+		}
         
         //Must be called last in loop as it starts the loop again
         StartCoroutine(DayCycle());
@@ -95,6 +97,7 @@ public class GameMan : MonoBehaviour {
         PowerText.text = "Power : " + Power.ToString() + " / " + PowerCap.ToString();
         CostText.text = "- " + CostPerDay.ToString() + " Per day";
         GainText.text = "+ " + GainPerDay.ToString() + " Per day";
+		JobText.text = "Employment : " + Workers.ToString() + " / " + WorkerCap.ToString();
 
 
     }
@@ -130,11 +133,15 @@ public class GameMan : MonoBehaviour {
     {
         WorkerCap += WorkerIncrease;
     }
+//	public void IncreasePowerUsage(int PowerUsageincrease)
+//	{
+//		Power += PowerUsageincrease;
+//	}
 
     //called when a building reqiuires power
     public void IncreasePowerCap(int PowerCapIncrease)
     {
-        PowerCap = PowerCapIncrease;
+		PowerCap = PowerCap + PowerCapIncrease;
     }
 
 
