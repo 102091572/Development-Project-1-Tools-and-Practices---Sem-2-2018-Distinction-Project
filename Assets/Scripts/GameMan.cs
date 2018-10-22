@@ -6,6 +6,11 @@ using UnityEngine.UI;
 
 public class GameMan : MonoBehaviour
 {
+	public GameObject camera;
+    public GameObject light;
+	public Color dawnlight;
+	public Color daylight;
+	public Color nightlight;
     private int MoneyCap = 20000;
     public int StartingMoney;
 
@@ -50,8 +55,23 @@ public class GameMan : MonoBehaviour
     //GameLoop
     IEnumerator DayCycle()
     {
+		light.GetComponent<Light> ().intensity = 0.5f;
+		light.GetComponent<Light> ().color = dawnlight;
+		camera.GetComponent<Camera> ().backgroundColor = dawnlight;
         //each day loop / game loops are 5 seconds
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(1);
+		light.GetComponent<Light> ().intensity = 1;
+		light.GetComponent<Light> ().color = daylight;
+		camera.GetComponent<Camera> ().backgroundColor = daylight;
+		yield return new WaitForSeconds(1);
+		light.GetComponent<Light> ().intensity = 0.5f;
+		light.GetComponent<Light> ().color = dawnlight;
+		camera.GetComponent<Camera> ().backgroundColor = dawnlight;
+		yield return new WaitForSeconds(1);
+		camera.GetComponent<Camera> ().backgroundColor = nightlight;
+		light.GetComponent<Light> ().color = nightlight;
+		light.GetComponent<Light> ().intensity = 0.1f;
+		yield return new WaitForSeconds(2);
         Day++;
 
          if (Money > MoneyCap)
