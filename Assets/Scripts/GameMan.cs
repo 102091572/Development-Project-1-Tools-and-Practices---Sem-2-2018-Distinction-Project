@@ -1,12 +1,19 @@
-
-﻿using System.Collections;
+﻿??using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class GameMan : MonoBehaviour
 {
+
     private GameObject BuildingSystem;
+
+    // Variables for the day/night cycle
+	public GameObject camera;
+    public GameObject light;
+	public Color dawnlight;
+	public Color daylight;
+	public Color nightlight;
 
     private int Apartments = 0;
     private int Workplaces = 0;
@@ -55,8 +62,23 @@ public class GameMan : MonoBehaviour
     //GameLoop
     IEnumerator DayCycle()
     {
+		light.GetComponent<Light> ().intensity = 0.5f;
+		light.GetComponent<Light> ().color = dawnlight;
+		camera.GetComponent<Camera> ().backgroundColor = dawnlight;
         //each day loop / game loops are 5 seconds
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(1);
+		light.GetComponent<Light> ().intensity = 1;
+		light.GetComponent<Light> ().color = daylight;
+		camera.GetComponent<Camera> ().backgroundColor = daylight;
+		yield return new WaitForSeconds(1);
+		light.GetComponent<Light> ().intensity = 0.5f;
+		light.GetComponent<Light> ().color = dawnlight;
+		camera.GetComponent<Camera> ().backgroundColor = dawnlight;
+		yield return new WaitForSeconds(1);
+		camera.GetComponent<Camera> ().backgroundColor = nightlight;
+		light.GetComponent<Light> ().color = nightlight;
+		light.GetComponent<Light> ().intensity = 0.1f;
+		yield return new WaitForSeconds(2);
         Day++;
 
         SetCaps(); // Calculate the economic caps based off no. of buildings 
