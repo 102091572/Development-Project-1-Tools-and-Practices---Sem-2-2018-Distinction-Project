@@ -1,4 +1,5 @@
-﻿??using System.Collections;
+﻿
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -100,12 +101,12 @@ public class GameMan : MonoBehaviour
     void Update()
     {
         DayText.text = "Day : " + Day.ToString();
-        MoneyText.text = "$ " + Money.ToString() + " / " + MoneyCap.ToString() + " *" + Banks;
-        PopText.text = "Population : " + Pop.ToString() + " / " + PopCap.ToString() + " *" + Apartments;
-        PowerText.text = "Power : " + Power.ToString() + " / " + PowerCap.ToString() + " *" + PowerPlants;
+        MoneyText.text = "$ " + Money.ToString() + " / " + MoneyCap.ToString();
+        PopText.text = "Population : " + Pop.ToString() + " / " + PopCap.ToString();
+        PowerText.text = "Power : " + Power.ToString() + " / " + PowerCap.ToString();
         CostText.text = "- " + CostPerDay.ToString() + " Per day";
         GainText.text = "+ " + GainPerDay.ToString() + " Per day";
-        JobText.text = "Employment : " + Workers.ToString() + " / " + WorkerCap.ToString() + " *" + Workplaces;  
+        JobText.text = "Employment : " + Workers.ToString() + " / " + WorkerCap.ToString();  
     }
 
     // Make sure our stats dont exceed the caps so we dont get weird numbers like Money: 100/50
