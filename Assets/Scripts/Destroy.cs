@@ -17,7 +17,7 @@ public class Destroy : MonoBehaviour {
     //Destroys a game obhect in the game word that has this scrip on it and also removes the cost per day of the building from rhe daily cost
     public void DestroyReturnCost()
     {
-        gameManager.GetComponent<GameMan>().BuildingDestroyed(this.GetComponent<Building>().ContinuedCost);
+        gameManager.GetComponent<GameMan>().BuildingDestroyed(this.GetComponent<Building>().Type);
         Destroy(this.gameObject);
         Debug.Log("destroy call in destroy script");
     }

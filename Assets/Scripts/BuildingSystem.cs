@@ -42,7 +42,6 @@ public class BuildingSystem : MonoBehaviour
     GameObject hitG0;
     List<GameObject> SelectedGo;
     private int _cost;
-    private int _daycost;
     private int _powercost;
     private int _costBuild;
     private int _dayCostBuild;
@@ -76,15 +75,14 @@ public class BuildingSystem : MonoBehaviour
         CurrentBuildType = buildingType;
         //ui show
 
-
         switch (buildingType)
         {
             case 1:
                 //bank
                 gridpointsParent.SetActive(true);
                 ToBeBuilt = BankPreFab;
+                BankPreFab.GetComponent<Building>().Type = 1; // Sets building type
                 _cost = BankPreFab.GetComponent<Building>().BuildCost;
-                _daycost = BankPreFab.GetComponent<Building>().ContinuedCost;
                 _powercost = BankPreFab.GetComponent<Building>().PowerCost;
                 ToBuildCostPannel.gameObject.SetActive(true);
                 BuildMenuOptions.gameObject.SetActive(false);
@@ -93,8 +91,8 @@ public class BuildingSystem : MonoBehaviour
                 //appartmeent
                 gridpointsParent.SetActive(true);
                 ToBeBuilt = ApartmentPreFab;
+                ApartmentPreFab.GetComponent<Building>().Type = 2;  // Sets building type
                 _cost = ApartmentPreFab.GetComponent<Building>().BuildCost;
-                _daycost = ApartmentPreFab.GetComponent<Building>().ContinuedCost;
                 _powercost = ApartmentPreFab.GetComponent<Building>().PowerCost;
                 ToBuildCostPannel.gameObject.SetActive(true);
                 BuildMenuOptions.gameObject.SetActive(false);
@@ -103,39 +101,41 @@ public class BuildingSystem : MonoBehaviour
                 //workplace
                 gridpointsParent.SetActive(true);
                 ToBeBuilt = WorkPlacePreFab;
+                WorkPlacePreFab.GetComponent<Building>().Type = 3;// Sets building type
                 _cost = WorkPlacePreFab.GetComponent<Building>().BuildCost;
-                _daycost = WorkPlacePreFab.GetComponent<Building>().ContinuedCost;
                 _powercost = WorkPlacePreFab.GetComponent<Building>().PowerCost;
                 ToBuildCostPannel.gameObject.SetActive(true);
                 BuildMenuOptions.gameObject.SetActive(false);
                 break;
+
             case 4:
                 //power
                 gridpointsParent.SetActive(true);
                 ToBeBuilt = PowerStationPreFab;
+                BankPreFab.GetComponent<Building>().Type = 4; // Sets building type
                 _cost = PowerStationPreFab.GetComponent<Building>().BuildCost;
-                _daycost = PowerStationPreFab.GetComponent<Building>().ContinuedCost;
                 ToBuildCostPannel.gameObject.SetActive(true);
                 BuildMenuOptions.gameObject.SetActive(false);
                 break;
+
             case 5:
                 //no build object
-
                 BuildMenu.gameObject.SetActive(true);
                 BuildMenuOptions.gameObject.SetActive(false);
-
                 ToBuildCostPannel.gameObject.SetActive(false);
+
                 foreach (GameObject point in SelectedGo)
                 {
                     point.tag = "Free";
                     point.GetComponent<MeshRenderer>().material = deselctmat;
 
                 }
+
                 SelectedGo.Clear();
                 gridpointsParent.SetActive(false);
                 break;
-            case 6:
 
+            case 6:
                 BuildMenu.gameObject.SetActive(false);
                 BuildMenuOptions.gameObject.SetActive(true);
                 gridpointsParent.SetActive(false);
@@ -150,14 +150,15 @@ public class BuildingSystem : MonoBehaviour
     //While in placement mode the building follows the mouse snapping to the grid.
     private void Update()
     {
-
         Costtobuild.text = "Cost to build all buildings : - " + _costBuild.ToString();
         costperdaytobuild.text = "Cost Per day if all buildings are built : + " + _dayCostBuild.ToString();
+        
         //old update
         if (Input.GetKeyDown(KeyCode.A))
         {
             Build();
         }
+        
         //The escape key handles backing out of menus and pauseing the game
         if (Input.GetKeyDown(KeyCode.Escape))
         {
@@ -183,9 +184,7 @@ public class BuildingSystem : MonoBehaviour
                 RaycastHit hit;
                 if (Physics.Raycast(ray, out hit))
                 {
-
                     hitG0 = hit.collider.gameObject;
-
                 }
                 if (hitG0.tag == "Free")
                 {
@@ -205,14 +204,11 @@ public class BuildingSystem : MonoBehaviour
 
                 foreach (GameObject Go in SelectedGo)
                 {
-
                     Go.GetComponent<MeshRenderer>().material = SelectMat;
                     Debug.Log("Selected mat");
                     _costBuild = _costBuild + _cost;
-                    _dayCostBuild = _dayCostBuild + _daycost;
                 }
             }
-
         }
     }
 
@@ -225,6 +221,8 @@ public class BuildingSystem : MonoBehaviour
         {
             foreach (GameObject GridPoint in SelectedGo)
             {
+                this.GetComponent<GameMan>().AddBuilding(CurrentBuildType);
+               
                 /* THE METHODS CALLED ON BUILDING CREATION GO AFTER HERE:*/
                 switch (CurrentBuildType)
                 {
@@ -256,14 +254,12 @@ public class BuildingSystem : MonoBehaviour
 
                 if (_powercost + this.GetComponent<GameMan> ().Power <= this.GetComponent<GameMan> ().PowerCap) {
                     Instantiate (ToBeBuilt, GridPoint.transform.position + new Vector3 (0, 1.5f, 0), ToBeBuilt.transform.rotation);
-                    this.GetComponent<GameMan> ().PurchaseBuilding (_cost, _daycost, _powercost);
+                    this.GetComponent<GameMan> ().PurchaseBuilding (_cost, _powercost);
                 } else {
                     Error("Not enough power to build");
                 }
             }
             BuildType(5);
-
-
         }
         else
         {
@@ -271,9 +267,6 @@ public class BuildingSystem : MonoBehaviour
             BuildType(5);
         }
         BuildType(5);
-
-
-
     }
 
     //Function for displaying error msgs can pass any error to save on repeating code
@@ -290,20 +283,16 @@ public class BuildingSystem : MonoBehaviour
         Text.SetActive(false);
     }
 
-
-
-
     public void PauseGame()
     {
         Time.timeScale = 0;
         PausePanel.SetActive(true);
     }
+
     public void ContinueGame()
     {
         Time.timeScale = 1;
         PausePanel.SetActive(false);
         PauseGameBool = false;
     }
-
-
 }
